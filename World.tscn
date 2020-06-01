@@ -10,13 +10,16 @@ position = Vector2( -1, 0 )
 position = Vector2( 113, 24 )
 
 [node name="Bush" parent="." instance=ExtResource( 1 )]
-position = Vector2( 57, 24 )
+position = Vector2( 33, 64 )
 
-[node name="Bush" parent="Bush" instance=ExtResource( 1 )]
-position = Vector2( 32, 80 )
+[node name="Bush2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 193, 64 )
 
-[node name="Bush2" parent="Bush" instance=ExtResource( 1 )]
-position = Vector2( 136, 8 )
+[node name="Bush3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 105, 104 )
 
-[node name="Bush3" parent="Bush" instance=ExtResource( 1 )]
-position = Vector2( 176, 80 )
+[node name="Bush4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 281, 96 )
+
+[node name="Bush5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 41, 16 )
