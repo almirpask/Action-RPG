@@ -20,6 +20,7 @@ var state = IDLE
 onready var stats = $Stats
 onready var playerDetectionZone = $PlayerDetectionZone
 onready var sprite = $AnimatedSprite
+onready var hurtbox = $Hurtbox
 
 func _physics_process(delta: float) -> void:
 	knockback = knockback.move_toward(Vector2.ZERO, 200 * delta)
@@ -47,9 +48,11 @@ func seek_player():
 	if playerDetectionZone.can_see_player():
 		state = CHASE
 
-func _on_Hurtbox_area_entered(area: Area2D) -> void:
+func _on_Hurtbox_area_entered(area: Area2D) -> void:	
 	stats.health -= area.damage
 	knockback = area.knockback_vector * 120	
+	hurtbox = hurtbox.create_hit_effect()
+	
 
 
 func _on_Stats_no_health() -> void:

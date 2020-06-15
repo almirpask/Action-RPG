@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Enemies/Bat.png" type="Texture" id=1]
 [ext_resource path="res://Shadows/SmallShadow.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Enemies/Bat.gd" type="Script" id=4]
 [ext_resource path="res://Stats.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/PlayerDetectionZone.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Ovarlap/Hitbox.tscn" type="PackedScene" id=7]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -45,14 +46,20 @@ height = 6.0
 [sub_resource type="CircleShape2D" id=9]
 radius = 64.0929
 
+[sub_resource type="CircleShape2D" id=10]
+radius = 4.66545
+
 [node name="Bat" type="KinematicBody2D"]
 collision_layer = 16
 script = ExtResource( 4 )
 
+[node name="Stats" parent="." instance=ExtResource( 5 )]
+max_health = 3
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 6 )
 animation = "fly"
-frame = 3
+frame = 2
 playing = true
 offset = Vector2( 0, -12 )
 
@@ -64,23 +71,28 @@ shape = SubResource( 7 )
 
 [node name="Hurtbox" parent="." instance=ExtResource( 3 )]
 collision_layer = 8
-collision_mask = 4
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( 0, -13 )
 shape = SubResource( 8 )
-
-[node name="Stats" parent="." instance=ExtResource( 5 )]
-max_health = 3
 
 [node name="PlayerDetectionZone" parent="." instance=ExtResource( 6 )]
 
 [node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
 modulate = Color( 1, 1, 1, 0.431373 )
 shape = SubResource( 9 )
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+
+[node name="Hitbox" parent="." instance=ExtResource( 7 )]
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 0, -13.789 )
+shape = SubResource( 10 )
 [connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 
 [editable path="Hurtbox"]
 
 [editable path="PlayerDetectionZone"]
+
+[editable path="Hitbox"]
