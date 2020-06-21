@@ -6,7 +6,7 @@
 
 [node name="HealthUI" type="Control"]
 margin_right = 57.0
-margin_bottom = 13.0
+margin_bottom = 11.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false

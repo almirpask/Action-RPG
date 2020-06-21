@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=68 format=2]
 
 [ext_resource path="res://World/Bush.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://World.gd" type="Script" id=8]
 [ext_resource path="res://World/Tree.png" type="Texture" id=9]
 [ext_resource path="res://World/Tree.tscn" type="PackedScene" id=10]
+[ext_resource path="res://UI/HealthUI.tscn" type="PackedScene" id=11]
 
 [sub_resource type="TileSet" id=1]
 0/name = "DirtTileset.png 0"
@@ -563,10 +564,18 @@ collision_mask = 0
 format = 1
 tile_data = PoolIntArray( -65533, 0, 3, -65529, 0, 0, -65528, 0, 1, -65527, 0, 1, -65526, 0, 2, 2, 0, 0, 3, 0, 131082, 4, 0, 196610, 7, 0, 131072, 8, 0, 131073, 9, 0, 131073, 10, 0, 131074, 65538, 0, 131072, 65539, 0, 131074, 262144, 0, 0, 262145, 0, 1, 262146, 0, 2, 262150, 0, 0, 262151, 0, 1, 262152, 0, 1, 262153, 0, 2, 327680, 0, 131072, 327681, 0, 131073, 327682, 0, 131074, 327686, 0, 65536, 327687, 0, 65537, 327688, 0, 65537, 327689, 0, 262149, 327690, 0, 196610, 393222, 0, 131072, 393223, 0, 131073, 393224, 0, 131073, 393225, 0, 131074 )
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 161, 88 )
+current = true
+smoothing_enabled = true
+
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 161, 88 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSort/Player"]
+remote_path = NodePath("../../../Camera2D")
 
 [node name="Bushes" type="YSort" parent="YSort"]
 
@@ -687,3 +696,11 @@ texture = ExtResource( 9 )
 [node name="Tree13" type="Sprite" parent="YSort/Trees"]
 position = Vector2( 345, 120 )
 texture = ExtResource( 9 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthUI" parent="CanvasLayer" instance=ExtResource( 11 )]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 62.0
+margin_bottom = 16.0
