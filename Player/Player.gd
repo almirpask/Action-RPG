@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 	match state:
 		MOVE:
 			move_state(delta)
-		ROLL:
+		ROLL:			
 			roll_state(delta)
 		ATTACK:
 			attack_state(delta)
@@ -59,9 +59,7 @@ func move_state(delta: float) -> void:
 		state = ROLL
 	if Input.is_action_just_pressed("attack"):
 		state = ATTACK
-	if Input.is_action_just_pressed("close_game"):
-		get_tree().quit()
-
+		
 func roll_state(_delta): 
 	velocity = roll_vector * ROLL_SPEED	
 	move()

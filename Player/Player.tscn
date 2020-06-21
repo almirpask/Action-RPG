@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://Player/Player.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Player/SwordHitbox.gd" type="Script" id=4]
 [ext_resource path="res://Ovarlap/Hurtbox.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UI/HealthUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Shadows/MediumShadow.png" type="Texture" id=7]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 4.0
@@ -611,6 +612,10 @@ height = 5.09135
 collision_layer = 2
 script = ExtResource( 2 )
 
+[node name="ShadowSprite" type="Sprite" parent="."]
+position = Vector2( 0, 1.378 )
+texture = ExtResource( 7 )
+
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -9 )
 texture = ExtResource( 1 )
@@ -672,10 +677,10 @@ position = Vector2( -0.164551, -4.77193 )
 shape = SubResource( 47 )
 
 [node name="HealthUI" parent="." instance=ExtResource( 6 )]
-margin_left = -156.176
-margin_top = -87.0766
-margin_right = -99.176
-margin_bottom = -71.0766
+margin_left = -156.0
+margin_top = -87.0
+margin_right = -99.0
+margin_bottom = -75.0
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 
 [editable path="HitboxPivot/SwordHitBox"]
