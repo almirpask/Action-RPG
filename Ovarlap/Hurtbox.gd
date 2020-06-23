@@ -8,6 +8,7 @@ signal invicibility_started
 signal invicibility_ended
 
 onready var timer = $Timer
+onready var colisionShape = $CollisionShape2D
 func set_invincible(value):
 	invincible = value
 	if invincible == true:
@@ -31,6 +32,8 @@ func _on_Timer_timeout() -> void:
 	
 func _on_Hurtbox_invicibility_started() -> void:
 	set_deferred("monitorable", false)
+	colisionShape.set_deferred("disable", true)
 	
 func _on_Hurtbox_invicibility_ended() -> void:	
 	monitorable = true
+	colisionShape.set_deferred("disable", false)
